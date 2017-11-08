@@ -44,9 +44,9 @@ class QuestionType implements \QuizRunner\Contracts\Questions\QuestionType
             'key' => 'MultipleChoice',
             'group' => self::GROUP_OPTIONS
         ],
-        self::SINGLE_LINE_INPUT => [
+        self::MULTI_LINE_INPUT => [
             'name' => 'Open text',
-            'key' => 'SingleLine',
+            'key' => 'MultiLine',
             'group' => self::GROUP_FREE_INPUT
         ],
     ];
