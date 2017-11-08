@@ -44,19 +44,21 @@ class QuestionTransformerManager extends Transformer
             $classReflection = new ReflectionClass($class);
 
             $params = [];
-            foreach ($classReflection->getMethod('__construct')->getParameters() as $index => $parameter) {
-                $typeHintedClass = $parameter->getClass();
+            if ($classReflection->hasMethod('__construct')) {
+                foreach ($classReflection->getMethod('__construct')->getParameters() as $index => $parameter) {
+                    $typeHintedClass = $parameter->getClass();
 
-                if ($typeHintedClass !== null) {
-                    if (
-                        $classReflection->implementsInterface(OptionsQuestionTransformer::class)
-                        && $typeHintedClass->getName() === Transformer::class // TODO: refactor this
-                    ) {
-                        $params[$index] = $this->optionTransformer;
-                    } else {
-                        $injectedClass = $this->findCustomTransformer(preg_replace('#Transformer$#', '',
-                            $typeHintedClass->getShortName()));
-                        $params[$index] = new $injectedClass;
+                    if ($typeHintedClass !== null) {
+                        if (
+                            $classReflection->implementsInterface(OptionsQuestionTransformer::class)
+                            && $typeHintedClass->getName() === Transformer::class // TODO: refactor this
+                        ) {
+                            $params[$index] = $this->optionTransformer;
+                        } else {
+                            $injectedClass = $this->findCustomTransformer(preg_replace('#Transformer$#', '',
+                                $typeHintedClass->getShortName()));
+                            $params[$index] = new $injectedClass;
+                        }
                     }
                 }
             }
