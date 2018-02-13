@@ -15,12 +15,12 @@ class SingleChoiceTransformer extends Transformer implements OptionsQuestionTran
     /**
      * @var ListOptionTransformer|Transformer
      */
-    private $optionTransformer;
+    protected $optionTransformer;
 
     /**
      * @var QuestionTransformer
      */
-    private $questionTransformer;
+    protected $questionTransformer;
 
 
     /**
