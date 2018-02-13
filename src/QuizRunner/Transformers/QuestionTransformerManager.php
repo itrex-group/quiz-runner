@@ -16,17 +16,17 @@ class QuestionTransformerManager extends Transformer
     /**
      * @var Transformer[]
      */
-    private $transformers = [];
+    protected $transformers = [];
 
     /**
      * @var Transformer
      */
-    private $optionTransformer;
+    protected $optionTransformer;
 
     /**
      * @var array
      */
-    private $transformersNamespaces = [];
+    protected $transformersNamespaces = [];
 
 
     /**
